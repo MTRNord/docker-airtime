@@ -5,7 +5,6 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 ENV HOSTNAME localhost
 
-MAINTAINER Víctor Rojas <okvic77@me.com>
 COPY help/pre.sh /pre.sh
 RUN /pre.sh
 

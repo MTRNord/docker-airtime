@@ -19,12 +19,6 @@ sudo service postgresql restart
 sleep 5
 echo "DB"
 
-#FILES=/usr/share/airtime/build/sql/*.sql
-#for f in $FILES
-#do
-#  echo "Processing $f file..."
-#  su postgres -c "PGPASSWORD=airtime psql -U airtime --dbname airtime -h localhost -f $f"
-#done
 IP=$(ifconfig eth0 2>/dev/null|awk '/inet addr:/ {print $2}'|sed 's/addr://')
 
 curl \
@@ -35,7 +29,6 @@ curl \
 -d "dbUser=airtime&dbPass=airtime&dbName=airtime&dbHost=localhost" -X POST \
 http://${IP}/setup/setup-functions.php?obj=DatabaseSetup
 
-
 curl \
 -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" \
 -X "X-Requested-With: XMLHttpRequest" \
@@ -44,11 +37,8 @@ curl \
 -d "mediaFolder=/srv/airtime/stor" -X POST \
 http://${IP}/setup/setup-functions.php?obj=MediaSetup
 
-
-
 sudo cp ~/helpers/htaccess /usr/share/airtime/public/.htaccess
 sudo cp ~/helpers/config /etc/airtime/airtime.conf
-
 
 sudo php5enmod opcache
 sudo rm -rf ~/airtime
